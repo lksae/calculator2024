@@ -42,7 +42,7 @@ const display = document.querySelector(".display");
 const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach(button => {
     button.addEventListener("click", () => {
-        displayValue += button.innerHTML;
+        displayValue += button.getAttribute("id");
         display.innerHTML = displayValue;
 
     })
@@ -66,7 +66,7 @@ operatorButtons.forEach(button => {
                 break;
             case "divide":
                 operator = "divide";
-                etFirstNumberAndDisplay();
+                setFirstNumberAndDisplay();
                 
                 
                 break;
