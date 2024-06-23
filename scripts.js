@@ -62,15 +62,23 @@ operatorButtons.forEach(button => {
 
         if (button.getAttribute("id") == "equal") {
             calculateAndDisplay();
+            calculationInProgress = false;
+            firstNumber = 0;
         } else {
             operator = button.getAttribute("id");
-            setFirstNumberAndDisplay();
+            if (firstNumber == 0) {
+                setFirstNumber();
+            } else {
+                calculateAndDisplay();
+                firstNumber = displayValue;
+                calculationInProgress = true;
+            }
         }
         
     })
 })
 
-function setFirstNumberAndDisplay() {
+function setFirstNumber() {
     firstNumber = parseFloat(displayValue);
     calculationInProgress = true;
 }
@@ -79,5 +87,5 @@ function calculateAndDisplay(){
     secondNumber = parseFloat(display.innerHTML);
     displayValue = operate(operator, firstNumber,secondNumber);
     display.innerHTML = displayValue;
-    firstNumber = 0;
+    
 }
