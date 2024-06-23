@@ -121,3 +121,4 @@ const dotButton = document.querySelector(".dot");
 dotButton.addEventListener("click", () => {
     dotButton.disabled = true;
 })
+
