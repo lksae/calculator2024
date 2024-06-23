@@ -77,13 +77,15 @@ operatorButtons.forEach(button => {
             }
             
         } else {
-            operator = button.getAttribute("id");
+            
             if (firstNumber == 0) {
+                operator = button.getAttribute("id");
                 setFirstNumber();
             } else {
                 calculateAndDisplay();
                 firstNumber = displayValue;
                 calculationInProgress = true;
+                operator = button.getAttribute("id");
             }
         }
         dotButton.disabled = false;
