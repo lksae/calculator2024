@@ -72,7 +72,7 @@ operatorButtons.forEach(button => {
                 display.innerHTML = "Nope!"
             } else {
                 calculateAndDisplay(); 
-                calculationInProgress = false;
+                calculationInProgress = true;
                 firstNumber = 0;
             }
             
@@ -114,4 +114,10 @@ function clear(){
     displayValue = 0;
     display.innerHTML = displayValue;
     calculationInProgress = false;
+    dotButton.disabled = false;
 }
+
+const dotButton = document.querySelector(".dot");
+dotButton.addEventListener("click", () => {
+    dotButton.disabled = true;
+})
