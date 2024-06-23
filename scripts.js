@@ -6,19 +6,19 @@ let calculationInProgress = false;
 
 
 function add (a,b) {
-    return a + b;
+    return (a + b).toFixed(2);
 }
 
 function substract (a,b) {
-    return a - b;
+    return (a - b).toFixed(2);
 }
 
 function multiply (a,b) {
-    return a * b;
+    return (a * b).toFixed(2);
 }
 
 function divide (a,b) {
-    return a / b;
+    return (a / b).toFixed(2);
 }
 
 function operate (operator, firstNumber, secondNumber) {
@@ -48,8 +48,14 @@ numberButtons.forEach(button => {
             display.innerHTML = displayValue;
             calculationInProgress = false;
         } else {
-            displayValue += button.getAttribute("id");
-            display.innerHTML = displayValue;
+            if(parseFloat(display.innerHTML) == 0) {
+                displayValue = button.getAttribute("id");
+                display.innerHTML = displayValue;
+            } else {
+                displayValue += button.getAttribute("id");
+                display.innerHTML = displayValue;
+            }
+            
         }
         
 
@@ -61,9 +67,15 @@ operatorButtons.forEach(button => {
     button.addEventListener("click", () => {
 
         if (button.getAttribute("id") == "equal") {
-            calculateAndDisplay();
-            calculationInProgress = false;
-            firstNumber = 0;
+            if(parseFloat(display.innerHTML) == 0) {
+                clear();
+                display.innerHTML = "Nope!"
+            } else {
+                calculateAndDisplay(); 
+                calculationInProgress = false;
+                firstNumber = 0;
+            }
+            
         } else {
             operator = button.getAttribute("id");
             if (firstNumber == 0) {
@@ -88,4 +100,18 @@ function calculateAndDisplay(){
     displayValue = operate(operator, firstNumber,secondNumber);
     display.innerHTML = displayValue;
     
+}
+
+const clearButton = document.querySelector("#clear");
+clearButton.addEventListener("click", () => {
+    clear();
+})
+
+function clear(){
+    firstNumber = 0;
+    secondNumber = 0;
+    operator = "";
+    displayValue = 0;
+    display.innerHTML = displayValue;
+    calculationInProgress = false;
 }
