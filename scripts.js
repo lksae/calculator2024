@@ -6,19 +6,19 @@ let calculationInProgress = false;
 
 
 function add (a,b) {
-    return (a + b).toFixed(2);
+    return (a + b);
 }
 
 function substract (a,b) {
-    return (a - b).toFixed(2);
+    return (a - b);
 }
 
 function multiply (a,b) {
-    return (a * b).toFixed(2);
+    return (a * b);
 }
 
 function divide (a,b) {
-    return (a / b).toFixed(2);
+    return (a / b);
 }
 
 function operate (operator, firstNumber, secondNumber) {
@@ -86,7 +86,7 @@ operatorButtons.forEach(button => {
                 calculationInProgress = true;
             }
         }
-        
+        dotButton.disabled = false;
     })
 })
 
@@ -98,7 +98,7 @@ function setFirstNumber() {
 function calculateAndDisplay(){
     secondNumber = parseFloat(display.innerHTML);
     displayValue = operate(operator, firstNumber,secondNumber);
-    display.innerHTML = displayValue;
+    display.innerHTML = displayValue.toFixed(2);
     
 }
 
