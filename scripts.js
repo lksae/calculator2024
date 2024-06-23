@@ -2,6 +2,7 @@ let firstNumber = 0;
 let secondNumber = 0;
 let operator = "";
 let displayValue = "";
+let calculationInProgress = false;
 
 
 function add (a,b) {
@@ -42,8 +43,15 @@ const display = document.querySelector(".display");
 const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach(button => {
     button.addEventListener("click", () => {
-        displayValue += button.getAttribute("id");
-        display.innerHTML = displayValue;
+        if (calculationInProgress) {
+            displayValue = button.getAttribute("id");
+            display.innerHTML = displayValue;
+            calculationInProgress = false;
+        } else {
+            displayValue += button.getAttribute("id");
+            display.innerHTML = displayValue;
+        }
+        
 
     })
 })
@@ -51,29 +59,6 @@ numberButtons.forEach(button => {
 const operatorButtons = document.querySelectorAll(".operator");
 operatorButtons.forEach(button => {
     button.addEventListener("click", () => {
-       /* switch (button.getAttribute("id")) {
-            case "add":
-                operator = "add";
-                setFirstNumberAndDisplay();
-                break;
-            case "substract":
-                setFirstNumberAndDisplay();
-                operator = "substract";
-                break;
-            case "multiply":
-                setFirstNumberAndDisplay();
-                operator = "multiply";
-                break;
-            case "divide":
-                operator = "divide";
-                setFirstNumberAndDisplay();
-                break;
-            case "equal":
-                
-                calculateAndDisplay()
-                
-                break;
-        }*/
 
         if (button.getAttribute("id") == "equal") {
             calculateAndDisplay();
@@ -87,8 +72,7 @@ operatorButtons.forEach(button => {
 
 function setFirstNumberAndDisplay() {
     firstNumber = parseFloat(displayValue);
-    display.innerHTML = 0;
-    displayValue = "";
+    calculationInProgress = true;
 }
 
 function calculateAndDisplay(){
