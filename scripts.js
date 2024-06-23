@@ -51,7 +51,7 @@ numberButtons.forEach(button => {
 const operatorButtons = document.querySelectorAll(".operator");
 operatorButtons.forEach(button => {
     button.addEventListener("click", () => {
-        switch (button.getAttribute("id")) {
+       /* switch (button.getAttribute("id")) {
             case "add":
                 operator = "add";
                 setFirstNumberAndDisplay();
@@ -67,13 +67,21 @@ operatorButtons.forEach(button => {
             case "divide":
                 operator = "divide";
                 setFirstNumberAndDisplay();
-                
-                
                 break;
             case "equal":
+                
                 calculateAndDisplay()
+                
                 break;
+        }*/
+
+        if (button.getAttribute("id") == "equal") {
+            calculateAndDisplay();
+        } else {
+            operator = button.getAttribute("id");
+            setFirstNumberAndDisplay();
         }
+        
     })
 })
 
